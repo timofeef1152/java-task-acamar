@@ -1,5 +1,8 @@
 package cz.acamar.tasks;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Task1 {
 
     /**
@@ -17,6 +20,14 @@ public class Task1 {
      * @return - the length of the last word in the string.
      */
     public int lengthOfLastWord(String str) {
+        if (str == null || str.isBlank()) {
+            return 0;
+        }
+        String lastWordPattern = "\\b(\\w+)\\W*$";
+        Matcher matcher = Pattern.compile(lastWordPattern).matcher(str);
+        if (matcher.find()) {
+            return matcher.group(1).length();
+        }
         return 0;
     }
 }
